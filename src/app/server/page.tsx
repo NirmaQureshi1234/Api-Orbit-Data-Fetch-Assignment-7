@@ -14,7 +14,7 @@ const Books = async () => {
 
   return (
     <>
-      <Navbar />
+      <Navbar cartCount={0} />
       <div className="w-full p-0 bg-gray-900 min-h-screen overflow-x-hidden">
         <h1 className="text-4xl font-extrabold mb-8 text-center  text-indigo-400">
           Server-Side Fetched Books
@@ -60,3 +60,19 @@ const Books = async () => {
 };
 
 export default Books;
+
+ 
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 

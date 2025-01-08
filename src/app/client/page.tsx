@@ -1,7 +1,9 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import Navbar from "@/app/components/Navbar";
-import Image from "next/image"; // Import the Image component from next/image
+import Image from "next/image";
+import Link from "next/link"; 
 
 type Product = {
   id: number;
@@ -27,7 +29,6 @@ const Products = () => {
         const data = await response.json();
         setProducts(data);
       } catch (err: unknown) {
-        // Check if the error is an instance of Error and handle it accordingly
         if (err instanceof Error) {
           setError(err.message);
         } else {
@@ -43,7 +44,7 @@ const Products = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbar cartCount={0} />
       <div className="min-h-screen bg-gradient-to-br from-gray-800 via-gray-900 to-black text-white">
         <div className="container mx-auto p-4">
           <h1 className="text-4xl font-extrabold mb-8 text-center text-indigo-400">
@@ -56,14 +57,15 @@ const Products = () => {
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {products.map((product) => (
-                <div
+                <Link
                   key={product.id}
+                  href={`/client/${product.id}`}
                   className="bg-gray-800 rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition-transform flex flex-col h-full"
                 >
                   <Image
                     src={product.image}
                     alt={product.title}
-                    width={500}  
+                    width={500}
                     height={300}
                     className="w-full h-48 object-contain p-4 bg-gray-700 rounded-t-lg"
                   />
@@ -77,11 +79,8 @@ const Products = () => {
                     <p className="text-indigo-400 font-bold mt-auto text-lg">
                       ${product.price}
                     </p>
-                    <button className="mt-4 w-full bg-indigo-500 py-2 px-4 rounded text-white hover:bg-indigo-600 transition">
-                      Add to Cart
-                    </button>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           )}

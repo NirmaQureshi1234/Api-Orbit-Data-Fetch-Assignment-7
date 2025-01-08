@@ -10,7 +10,7 @@ const Page = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 dark:from-gray-700 dark:to-gray-900 transition-all">
-      <Navbar />
+      <Navbar cartCount={0} />
 
       {/* Hero Section */}
       <motion.section
